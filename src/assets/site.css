@@ -18,13 +18,16 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 88px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
 body { margin: 0; font-family: var(--font); font-size: 1.0625rem; line-height: 1.65; color: var(--ink); background: var(--ivory); }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--clay-dark); text-underline-offset: 3px; }
 a:hover { color: var(--clay); }
-:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 3px solid var(--focus, var(--earth)); outline-offset: 3px; border-radius: 4px; }
+.site-header, .hero, .page-hero, .section-dark, .facts, .site-footer, .dialog-head, .pull { --focus: var(--sun); }
+.section-dark .form, .dialog-body { --focus: var(--earth); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
 h1, h2, h3 { font-weight: 800; letter-spacing: -0.035em; line-height: 1.08; margin: 0 0 .5em; color: var(--earth); }
 h1 { font-size: clamp(2.3rem, 5.6vw, 4.2rem); }
@@ -75,6 +78,7 @@ p { margin: 0 0 1em; }
 .brand small { display: block; font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--sun); margin-top: 3px; }
 .brand:hover { color: #fff; }
 .nav { margin-left: auto; }
+.menu-btn + .nav { margin-left: auto; }
 .nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
 .nav a { display: block; padding: 10px 14px; color: rgba(248,244,238,.88); text-decoration: none; font-weight: 600; font-size: .97rem; border-radius: 999px; }
 .nav a:hover, .nav a[aria-current="page"] { color: #fff; background: rgba(248,244,238,.1); }
@@ -154,7 +158,7 @@ blockquote { margin: 28px 0; padding: 4px 0 4px 22px; border-left: 4px solid var
 .section-dark blockquote { color: #fff; }
 .pull { background: var(--clay); color: #fff; }
 .pull blockquote { color: #fff; border-color: var(--sun); font-size: clamp(1.4rem, 3vw, 2rem); max-width: 30ch; margin: 0; }
-.pull cite { display: block; margin-top: 14px; font-style: normal; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+.pull cite { display: block; margin-top: 14px; font-style: normal; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; }
 
 .sdg-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; list-style: none; padding: 0; margin: 0; }
 .sdg-grid li { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px; font-weight: 600; font-size: .95rem; line-height: 1.3; }
@@ -195,11 +199,11 @@ dialog::backdrop { background: rgba(15, 28, 22, .65); }
 .product[hidden] { display: none; }
 
 /* Forms */
-.form { background: #fff; border-radius: var(--radius); padding: clamp(24px, 4vw, 40px); box-shadow: var(--shadow); border: 1px solid var(--line); }
+.form { color: var(--ink); background: #fff; border-radius: var(--radius); padding: clamp(24px, 4vw, 40px); box-shadow: var(--shadow); border: 1px solid var(--line); }
 .field { margin-bottom: 18px; }
 .field label, .field legend { display: block; font-weight: 600; font-size: .95rem; margin-bottom: 6px; color: var(--earth); }
 .field .hint { font-weight: 400; color: var(--ink-2); font-size: .88rem; }
-.field input, .field select, .field textarea { width: 100%; min-height: 50px; padding: 12px 14px; font: inherit; font-size: 1rem; color: var(--ink); background: var(--ivory); border: 1.5px solid rgba(29,29,26,.22); border-radius: 10px; }
+.field input, .field select, .field textarea { width: 100%; min-height: 50px; padding: 12px 14px; font: inherit; font-size: 1rem; color: var(--ink); background: var(--ivory); border: 1.5px solid #767670; border-radius: 10px; }
 .field textarea { min-height: 130px; resize: vertical; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--earth); box-shadow: 0 0 0 3px rgba(233,185,73,.55); }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -210,10 +214,14 @@ dialog::backdrop { background: rgba(15, 28, 22, .65); }
 .form-status { margin-top: 16px; padding: 14px 16px; border-radius: 10px; font-weight: 600; }
 .form-status.ok { background: #e3f1e6; color: #1d5b2c; }
 .form-status.err { background: #fbe6df; color: #8a2f12; }
-.form-status:empty { display: none; }
+.form-status:empty { padding: 0; margin: 0; }
+.section-dark .form .muted { color: var(--ink-2); }
+.section-dark .form a:not(.btn) { color: var(--clay-dark); }
+.dialog-head .eyebrow { color: var(--sun); }
 .contact-list { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 12px; }
 .contact-list a { display: flex; align-items: center; gap: 12px; padding: 16px 18px; background: var(--earth-2); border-radius: 12px; color: #fff; text-decoration: none; font-weight: 600; }
 .contact-list a:hover { background: var(--earth-3); color: #fff; }
+.contact-list a:hover small { color: rgba(248,244,238,.88); }
 .contact-list small { display: block; font-weight: 500; color: rgba(248,244,238,.75); font-size: .85rem; }
 
 .prose { max-width: 72ch; }
@@ -235,7 +243,9 @@ dialog::backdrop { background: rgba(15, 28, 22, .65); }
 @media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
 
 .mobile-give { display: none; }
+@media (max-width: 860px) { .hero::after { background: rgba(20,38,30,.78); } }
 @media (max-width: 720px) {
+  html { scroll-padding-bottom: 80px; }
   .mobile-give { display: flex; align-items: center; justify-content: center; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 40; min-height: 52px; border-radius: 999px; background: var(--sun); color: var(--ink); font-weight: 800; text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
   .mobile-give:hover { color: var(--ink); }
   body.page-give .mobile-give, body.page-contact .mobile-give { display: none; }

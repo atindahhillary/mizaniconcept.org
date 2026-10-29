@@ -12,6 +12,9 @@ menuBtn?.addEventListener("click", () => {
   menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   nav.classList.toggle("open", open);
 });
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && menuBtn?.getAttribute("aria-expanded") === "true") { menuBtn.click(); menuBtn.focus(); }
+});
 
 // M-Pesa giving dialog
 const dialog = document.getElementById("mpesa");
@@ -31,9 +34,17 @@ document.querySelectorAll("[data-copy]").forEach((btn) =>
       await navigator.clipboard.writeText(btn.dataset.copy);
       btn.textContent = "Copied";
       setTimeout(() => (btn.textContent = "Copy"), 2000);
-    } catch { /* clipboard blocked: number stays visible to copy by hand */ }
+      announceCopy("Number copied");
+    } catch {
+      announceCopy("Copy failed, the number is shown above");
+    }
   })
 );
+
+function announceCopy(msg) {
+  const s = document.querySelector("[data-copy-status]");
+  if (s) s.textContent = msg;
+}
 
 // Store category filter
 const filters = document.querySelectorAll(".filters button");
@@ -42,6 +53,8 @@ filters.forEach((btn) =>
     filters.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
     const cat = btn.dataset.filter;
     document.querySelectorAll(".product").forEach((p) => (p.hidden = cat !== "all" && p.dataset.cat !== cat));
+    const shown = document.querySelectorAll(".product:not([hidden])").length;
+    document.getElementById("filter-status").textContent = `${shown} items shown`;
   })
 );
 
@@ -65,6 +78,7 @@ if (form) {
     btn.disabled = true;
     btn.textContent = "Sending...";
     status.className = "form-status";
+    status.setAttribute("role", "status");
     status.textContent = "";
     try {
       const res = await fetch(FORM_ENDPOINT, {
@@ -81,6 +95,7 @@ if (form) {
     } catch {
       const body = encodeURIComponent(Object.entries(data).filter(([k]) => !k.startsWith("_")).map(([k, v]) => `${k}: ${v}`).join("\n"));
       status.className = "form-status err";
+      status.setAttribute("role", "alert");
       status.innerHTML = `Sorry, the message did not send. Please <a href="mailto:${EMAIL}?subject=${encodeURIComponent("Website enquiry: " + roleText)}&body=${body}">email it to us instead</a> or WhatsApp +254 724 116694.`;
     } finally {
       btn.disabled = false;

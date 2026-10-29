@@ -7,24 +7,115 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/store/:slug", "destination": "/store", "permanent": true },
-    { "source": "/index", "destination": "/", "permanent": true }
+    {
+      "source": "/store/beaded-converse",
+      "destination": "/store#beaded-converse",
+      "permanent": true
+    },
+    {
+      "source": "/store/beaded-sandals",
+      "destination": "/store#beaded-sandals",
+      "permanent": true
+    },
+    {
+      "source": "/store/beaded-hat",
+      "destination": "/store#beaded-hat",
+      "permanent": true
+    },
+    {
+      "source": "/store/beaded-dog-collar",
+      "destination": "/store#dog-collar",
+      "permanent": true
+    },
+    {
+      "source": "/store/african-attire",
+      "destination": "/store#dashiki-attire",
+      "permanent": true
+    },
+    {
+      "source": "/store/fleece-blanket",
+      "destination": "/store#fleece-blanket",
+      "permanent": true
+    },
+    {
+      "source": "/store/art-prints",
+      "destination": "/store#wall-art",
+      "permanent": true
+    },
+    {
+      "source": "/store/beaded-baseball-cap",
+      "destination": "/store#baseball-cap",
+      "permanent": true
+    },
+    {
+      "source": "/store/friendship-bracelets",
+      "destination": "/store#friendship-bracelets",
+      "permanent": true
+    },
+    {
+      "source": "/store/:slug",
+      "destination": "/store",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": ".*.vercel.app"
+        }
+      ],
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
-        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+        }
       ]
     },
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
     }
   ]
 }

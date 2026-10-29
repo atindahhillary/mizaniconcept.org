@@ -25,6 +25,9 @@ const header = (path) => `
       <img src="/assets/img/logo.webp" alt="" width="44" height="44">
       <span>Mizani<small>Concept</small></span>
     </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-list" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
     <nav class="nav" aria-label="Main">
       <ul id="nav-list">
         ${NAV.map(([href, label]) => `<li><a href="${href}"${path === href ? ' aria-current="page"' : ""}>${label}</a></li>`).join("")}
@@ -34,9 +37,6 @@ const header = (path) => `
       <a class="btn btn-ghost-light" href="/contact?as=youth">Register</a>
       <a class="btn btn-sun" href="/give">Donate</a>
     </div>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-list" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </header>`;
 
@@ -44,7 +44,7 @@ const footer = () => `
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div>
-      <a class="brand brand-footer" href="/"><img src="/assets/img/logo.webp" alt="" width="44" height="44"><span>Mizani<small>Concept</small></span></a>
+      <a class="brand brand-footer" href="/" aria-label="Mizani Concept home"><img src="/assets/img/logo.webp" alt="" width="44" height="44"><span>Mizani<small>Concept</small></span></a>
       <p class="muted">Mizani is Swahili for balance. Since 2017 we have worked with teens, pre-teens and educators across Kenya.</p>
     </div>
     <div>
@@ -113,7 +113,7 @@ ${meta.noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonica
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
-${meta.preload ? `<link rel="preload" as="image" href="${meta.preload}" fetchpriority="high">` : ""}
+${meta.preload ? `<link rel="preload" as="image" href="${meta.preload}"${meta.preloadSrcset ? ` imagesrcset="${meta.preloadSrcset}" imagesizes="100vw"` : ""} fetchpriority="high">` : ""}
 ${meta.jsonld ? `<script type="application/ld+json">${JSON.stringify(meta.jsonld)}</script>` : ""}
 <script src="/assets/site.js" defer></script>
 </head>
@@ -131,6 +131,7 @@ ${footer()}
 const ORG = {
   "@context": "https://schema.org",
   "@type": "NGO",
+  "@id": `${SITE}/#org`,
   name: "Mizani Concept",
   alternateName: "Mizani",
   url: SITE,
@@ -164,11 +165,10 @@ for (const file of pages) {
   if (!meta.noindex) sitemap.push(SITE + (path === "/" ? "/" : path));
 }
 
-const today = new Date().toISOString().slice(0, 10);
 writeFileSync(
   join(OUT, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemap
-    .map((u) => `  <url><loc>${u}</loc><lastmod>${today}</lastmod></url>`)
+    .map((u) => `  <url><loc>${u}</loc></url>`)
     .join("\n")}\n</urlset>\n`
 );
 writeFileSync(join(OUT, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
