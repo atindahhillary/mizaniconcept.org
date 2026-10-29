@@ -2,12 +2,16 @@
 // and writes fully pre-rendered HTML to dist/ (good for SEO and link previews).
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, rmSync } from "node:fs";
 import { join } from "node:path";
+import { createHash } from "node:crypto";
 
 const SITE = "https://mizaniconcept.org";
 const EMAIL = "info@mizaniconcept.org";
 const PHONE = "+254724116694";
 const PHONE_DISPLAY = "+254 724 116694";
 const OUT = "dist";
+// Content hash per asset so browsers fetch new CSS/JS after every change
+const ver = (f) => createHash("sha1").update(readFileSync(join("src/assets", f))).digest("hex").slice(0, 8);
+const V = { css: ver("site.css"), site: ver("site.js"), cart: ver("cart.js") };
 const PRODUCTS = JSON.parse(readFileSync("src/data/products.json", "utf8"));
 const money = (p) => `${p.priceFrom ? "From " : ""}$${p.price}`;
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
@@ -131,11 +135,11 @@ ${meta.ogImage ? "" : '<meta property="og:image:width" content="1200">\n<meta pr
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/site.css?v=${V.css}">
 ${meta.preload ? `<link rel="preload" as="image" href="${meta.preload}"${meta.preloadSrcset ? ` imagesrcset="${meta.preloadSrcset}" imagesizes="100vw"` : ""} fetchpriority="high">` : ""}
 ${meta.jsonld ? `<script type="application/ld+json">${JSON.stringify(meta.jsonld)}</script>` : ""}
-<script src="/assets/site.js" defer></script>
-<script src="/assets/cart.js" defer></script>
+<script src="/assets/site.js?v=${V.site}" defer></script>
+<script src="/assets/cart.js?v=${V.cart}" defer></script>
 </head>
 <body>
 ${header(path)}
