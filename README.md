@@ -12,7 +12,9 @@ This is a rebuild of the original Lovable single-page app. It is a fully pre-ren
 | `/about` | Who we are, whole person model, 4Cs, SDGs |
 | `/programs` | Camps, wellness sessions, educator training, Period Party, Thrive Scale |
 | `/give` | Donation tiers, M-Pesa dialog, diaspora giving, partnerships |
-| `/store` | 9 products with WhatsApp and email ordering |
+| `/store` | 9 products, filter, quick add to cart |
+| `/store/<slug>` | Product story pages generated from `src/data/products.json` |
+| `/checkout` | Cart checkout: sends the order to info@ and shows Paybill and bank details |
 | `/contact` | Working enquiry form (`?as=youth`, `school`, `educator`, `donor`, `visit`, `partner` preselects the audience) |
 | `/privacy` | Privacy notice (Kenya Data Protection Act, 2019) |
 
@@ -35,8 +37,8 @@ The form posts to [FormSubmit](https://formsubmit.co) and delivers to `info@miza
 
 ## Open items for the Mizani team
 
-1. **Organisation M-Pesa Paybill or Till.** Donations still go to the personal number +254 724 116694 via Send Money. Swap the number in `src/pages/give.html` once a Paybill/Till exists.
-2. **Online card payments** (Paystack, Pesapal, M-Changa or PayPal) for diaspora donors and store orders. Until then the site asks people to email.
+1. Store checkout and donations use the NCBA M-Pesa Paybill 880100 (account 1011645723, PEMS MIZANI LIMITED) and the NCBA bank/SWIFT details. Store orders arrive at info@ with an `MZ-` order reference; payments must be matched by hand.
+2. **Online card payments** (Paystack, Pesapal or PayPal) would let buyers pay instantly instead of by transfer.
 3. **Confirm +254 724 116694 is on WhatsApp**, since store orders and confirmations use `wa.me` links.
 4. **Impact evidence**: real numbers served since 2017, Thrive Scale results, 2 to 3 consented stories, team/board, registration number. None were invented for this site.
 5. **Safeguarding / child protection policy** to publish alongside the privacy notice.

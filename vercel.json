@@ -8,53 +8,8 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/store/beaded-converse",
-      "destination": "/store#beaded-converse",
-      "permanent": true
-    },
-    {
-      "source": "/store/beaded-sandals",
-      "destination": "/store#beaded-sandals",
-      "permanent": true
-    },
-    {
-      "source": "/store/beaded-hat",
-      "destination": "/store#beaded-hat",
-      "permanent": true
-    },
-    {
-      "source": "/store/beaded-dog-collar",
-      "destination": "/store#dog-collar",
-      "permanent": true
-    },
-    {
-      "source": "/store/african-attire",
-      "destination": "/store#dashiki-attire",
-      "permanent": true
-    },
-    {
-      "source": "/store/fleece-blanket",
-      "destination": "/store#fleece-blanket",
-      "permanent": true
-    },
-    {
       "source": "/store/art-prints",
-      "destination": "/store#wall-art",
-      "permanent": true
-    },
-    {
-      "source": "/store/beaded-baseball-cap",
-      "destination": "/store#baseball-cap",
-      "permanent": true
-    },
-    {
-      "source": "/store/friendship-bracelets",
-      "destination": "/store#friendship-bracelets",
-      "permanent": true
-    },
-    {
-      "source": "/store/:slug",
-      "destination": "/store",
+      "destination": "/store/beaded-wall-art",
       "permanent": true
     },
     {
@@ -104,7 +59,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+          "value": "default-src 'self'; media-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
         }
       ]
     },

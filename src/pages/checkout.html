@@ -1,0 +1,101 @@
+<!--meta
+{
+  "title": "Checkout | Mizani Store",
+  "description": "Complete your Mizani Store order and pay by M-Pesa Paybill or bank transfer.",
+  "noindex": true
+}
+-->
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Mizani Store</span>
+    <h1>Checkout</h1>
+    <p class="hook-line">Your piece is handmade. Your purchase funds a young person.</p>
+    <p class="lead">Three quick steps: your details, your order, then payment by M-Pesa Paybill or bank transfer.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap checkout" data-checkout>
+    <div class="checkout-empty card" hidden data-checkout-empty>
+      <h2>Your cart is empty</h2>
+      <p class="muted">Every piece in the store is handmade in Kenya and helps fund our youth programs.</p>
+      <a class="btn btn-clay" href="/store">Browse the store</a>
+    </div>
+
+    <form class="form" id="checkout-form" data-checkout-form>
+      <h2>1. Your details</h2>
+      <div class="field-row">
+        <div class="field"><label for="c-fn">First name</label><input id="c-fn" name="first_name" autocomplete="given-name" required></div>
+        <div class="field"><label for="c-ln">Last name</label><input id="c-ln" name="last_name" autocomplete="family-name" required></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="c-em">Email</label><input id="c-em" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="c-ph">Phone or WhatsApp</label><input id="c-ph" name="phone" type="tel" autocomplete="tel" placeholder="+254 7XX XXX XXX" required></div>
+      </div>
+
+      <h2>2. Delivery</h2>
+      <div class="field">
+        <label for="c-country">Country</label>
+        <input id="c-country" name="country" autocomplete="country-name" value="Kenya" required>
+      </div>
+      <div class="field"><label for="c-addr">Delivery address or pickup point</label><textarea id="c-addr" name="address" autocomplete="street-address" required placeholder="Street, building, town or county, postal code"></textarea></div>
+      <div class="field"><label for="c-notes">Order notes <span class="hint">(optional)</span></label><textarea id="c-notes" name="notes" placeholder="Colour preferences, gift message, delivery timing"></textarea></div>
+
+      <h2>3. How you will pay</h2>
+      <fieldset class="field pay-options">
+        <legend class="sr-only">Payment method</legend>
+        <label class="pay-option"><input type="radio" name="payment" value="M-Pesa Paybill" checked><span><strong>M-Pesa Paybill</strong><small>Fastest within Kenya</small></span></label>
+        <label class="pay-option"><input type="radio" name="payment" value="Bank transfer"><span><strong>Bank transfer</strong><small>Local or international (SWIFT)</small></span></label>
+      </fieldset>
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="check"><input type="checkbox" name="consent" value="yes" required><span>I agree that Mizani may use these details to process and deliver my order, as described in the <a href="/privacy">privacy notice</a>.</span></label>
+      <button class="btn btn-clay btn-block" type="submit">Place order</button>
+      <div class="form-status" role="status" aria-live="polite"></div>
+    </form>
+
+    <aside class="card order-summary" data-order-summary aria-labelledby="summary-title">
+      <h2 id="summary-title">Order summary</h2>
+      <ul class="summary-items" data-summary-items></ul>
+      <div class="cart-total"><span>Subtotal</span><strong data-summary-subtotal>$0</strong></div>
+      <p class="muted small">About <span data-summary-kes>KES 0</span>. Shipping is quoted separately once we confirm your order.</p>
+    </aside>
+
+    <div class="card confirmation" hidden data-confirmation tabindex="-1">
+      <span class="eyebrow">Order received</span>
+      <h2>Thank you. Your order number is <span data-order-ref></span>.</h2>
+      <p>Please pay <strong data-pay-total></strong> (about <span data-pay-kes></span>). For bank transfers, use your order number as the reference. For M-Pesa, send us the M-Pesa confirmation message with your order number. We will then confirm shipping and dispatch your piece.</p>
+      <div class="grid grid-2 pay-grid">
+        <div class="pay-box">
+          <h3>M-Pesa Paybill</h3>
+          <dl>
+            <dt>Business number</dt><dd><strong>880100</strong> <button class="btn btn-outline btn-sm" type="button" data-copy="880100" aria-label="Copy business number">Copy</button></dd>
+            <dt>Account number</dt><dd><strong>1011645723</strong> <button class="btn btn-outline btn-sm" type="button" data-copy="1011645723" aria-label="Copy account number">Copy</button></dd>
+            <dt>Name shown</dt><dd>PEMS MIZANI LIMITED</dd>
+          </dl>
+          <ol class="small">
+            <li>M-Pesa, then Lipa na M-Pesa, then Pay Bill.</li>
+            <li>Business number 880100, account number 1011645723.</li>
+            <li>Enter the KES amount and your PIN.</li>
+          </ol>
+        </div>
+        <div class="pay-box">
+          <h3>Bank transfer</h3>
+          <dl>
+            <dt>Bank</dt><dd>NCBA Bank, Kahawa Sukari Branch</dd>
+            <dt>Account name</dt><dd>PEMS MIZANI LIMITED</dd>
+            <dt>Account number</dt><dd><strong>1011645723</strong></dd>
+            <dt>Bank code</dt><dd>07</dd>
+            <dt>Branch code</dt><dd>000</dd>
+            <dt>SWIFT / BIC</dt><dd>CBAFKENX</dd>
+            <dt>Reference</dt><dd><strong data-order-ref></strong></dd>
+          </dl>
+        </div>
+      </div>
+      <span class="sr-only" role="status" data-copy-status></span>
+      <div class="btn-row">
+        <a class="btn btn-clay" href="#" data-wa-confirm rel="noopener">Send payment confirmation on WhatsApp</a>
+        <a class="btn btn-outline" href="/store">Continue shopping</a>
+      </div>
+    </div>
+  </div>
+</section>

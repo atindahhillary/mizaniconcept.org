@@ -4,13 +4,15 @@
   "description": "Donate to Mizani Concept by M-Pesa or card. $10 (about KES 1,300) funds one Kenyan student for a full term of mentorship, wellness sessions and materials."
 }
 -->
-<section class="page-hero">
+<section class="page-hero hero-photo">
+  <img class="hero-bg" src="/assets/img/school-session.webp" alt="" width="1280" height="590">
   <div class="wrap">
     <span class="eyebrow">Support our work</span>
     <h1>$10. One term. One young person.</h1>
+    <p class="hook-line">Less than a takeaway lunch. More than a term of change.</p>
     <p class="lead">Your gift covers a student's mentorship, wellness sessions and curriculum materials for a full school term. This term we aim to reach 800 young people across Kenya, a goal of $8,000.</p>
     <div class="btn-row">
-      <button class="btn btn-sun" type="button" data-give="$10 (about KES 1,300)">Give $10 by M-Pesa</button>
+      <button class="btn btn-sun" type="button" data-give="$10 (about KES 1,300)">Give $10 by M-Pesa Paybill</button>
       <a class="btn btn-ghost-light" href="#other-ways">Card, bank or diaspora giving</a>
     </div>
   </div>
@@ -76,9 +78,16 @@
     <div>
       <span class="eyebrow">Other ways to give</span>
       <h2>Giving from outside Kenya?</h2>
-      <p>We are setting up online card payments. Until then, email us and we will send card, PayPal or bank transfer details the same week, along with a receipt for your gift.</p>
+      <p>Send a bank transfer to our NCBA account. Use "Donation" and your name as the reference, then email us for a receipt.</p>
+      <dl class="bank-dl">
+        <dt>Bank</dt><dd>NCBA Bank, Kahawa Sukari Branch</dd>
+        <dt>Account name</dt><dd>PEMS MIZANI LIMITED</dd>
+        <dt>Account number</dt><dd>1011645723</dd>
+        <dt>Bank code / Branch code</dt><dd>07 / 000</dd>
+        <dt>SWIFT / BIC</dt><dd>CBAFKENX</dd>
+      </dl>
       <div class="btn-row">
-        <a class="btn btn-clay" href="mailto:info@mizaniconcept.org?subject=I%20would%20like%20to%20give%20to%20Mizani">Email us to give by card or bank</a>
+        <a class="btn btn-clay" href="mailto:info@mizaniconcept.org?subject=Donation%20receipt%20request">Email us for a receipt</a>
         <button class="btn btn-outline" type="button" data-give="">Give any amount by M-Pesa</button>
       </div>
     </div>
@@ -116,23 +125,27 @@
 
 <dialog id="mpesa" aria-labelledby="mpesa-title">
   <div class="dialog-head">
-    <span class="eyebrow">M-Pesa &middot; Kenya</span>
+    <span class="eyebrow">M-Pesa Paybill &middot; NCBA Bank</span>
     <h2 id="mpesa-title">Donate via M-Pesa</h2>
     <button class="dialog-close" type="button" aria-label="Close">&times;</button>
   </div>
   <div class="dialog-body">
     <p><strong data-amount>Give any amount</strong></p>
     <div class="copy-row">
-      <div><small class="muted">Send Money to</small><br><strong>+254 724 116694</strong><br><small class="muted">Name: Mizani Concept</small></div>
-      <button class="btn btn-outline" type="button" data-copy="0724116694" aria-label="Copy M-Pesa number">Copy</button>
-      <span class="sr-only" role="status" data-copy-status></span>
+      <div><small class="muted">Business number</small><br><strong>880100</strong></div>
+      <button class="btn btn-outline" type="button" data-copy="880100" aria-label="Copy business number">Copy</button>
     </div>
+    <div class="copy-row">
+      <div><small class="muted">Account number</small><br><strong>1011645723</strong><br><small class="muted">Name: PEMS MIZANI LIMITED</small></div>
+      <button class="btn btn-outline" type="button" data-copy="1011645723" aria-label="Copy account number">Copy</button>
+    </div>
+    <span class="sr-only" role="status" data-copy-status></span>
     <ol>
-      <li>Open M-Pesa and choose <strong>Send Money</strong>.</li>
-      <li>Enter <strong>0724 116694</strong>.</li>
+      <li>Open M-Pesa, choose <strong>Lipa na M-Pesa</strong>, then <strong>Pay Bill</strong>.</li>
+      <li>Business number <strong>880100</strong>, account number <strong>1011645723</strong>.</li>
       <li>Enter your amount and confirm with your PIN.</li>
       <li>Optional: WhatsApp us the confirmation message for a thank-you receipt.</li>
     </ol>
-    <a class="btn btn-clay btn-block" href="https://wa.me/254724116694?text=Hi%20Mizani%2C%20I%20have%20just%20donated%20via%20M-Pesa." rel="noopener">Send confirmation on WhatsApp</a>
+    <a class="btn btn-clay btn-block" href="https://wa.me/254724116694?text=Hi%20Mizani%2C%20I%20have%20just%20donated%20via%20M-Pesa%20Paybill." rel="noopener">Send confirmation on WhatsApp</a>
   </div>
 </dialog>

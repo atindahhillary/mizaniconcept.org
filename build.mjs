@@ -8,6 +8,9 @@ const EMAIL = "info@mizaniconcept.org";
 const PHONE = "+254724116694";
 const PHONE_DISPLAY = "+254 724 116694";
 const OUT = "dist";
+const PRODUCTS = JSON.parse(readFileSync("src/data/products.json", "utf8"));
+const money = (p) => `${p.priceFrom ? "From " : ""}$${p.price}`;
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
 const NAV = [
   ["/about", "About"],
@@ -37,6 +40,10 @@ const header = (path) => `
       <a class="btn btn-ghost-light" href="/contact?as=youth">Register</a>
       <a class="btn btn-sun" href="/give">Donate</a>
     </div>
+    <button class="cart-btn" type="button" data-open-cart aria-label="Open cart, 0 items">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.5L22 7H6"/></svg>
+      <span class="cart-count" data-cart-count hidden>0</span>
+    </button>
   </div>
 </header>`;
 
@@ -80,12 +87,25 @@ const footer = () => `
     <p><a href="/privacy">Privacy notice</a></p>
   </div>
 </footer>
-<a class="mobile-give" href="/give">Give $10, fund one term</a>`;
+<a class="mobile-give" href="/give">Give $10, fund one term</a>
+<dialog class="drawer" id="cart" aria-labelledby="cart-title">
+  <div class="drawer-head">
+    <h2 id="cart-title">Your cart</h2>
+    <button class="drawer-close" type="button" data-close-cart aria-label="Close cart">&times;</button>
+  </div>
+  <div class="drawer-body" data-cart-items></div>
+  <div class="drawer-foot">
+    <div class="cart-total"><span>Subtotal</span><strong data-cart-subtotal>$0</strong></div>
+    <p class="muted small">Shipping is quoted after you order. Pay by M-Pesa Paybill or bank transfer.</p>
+    <a class="btn btn-clay btn-block" href="/checkout" data-checkout-link>Checkout</a>
+    <button class="btn btn-outline btn-block" type="button" data-close-cart>Keep shopping</button>
+  </div>
+</dialog>`;
 
 const layout = (meta, body, path) => {
   const url = SITE + (path === "/" ? "/" : path);
   const title = meta.title;
-  const ogImage = `${SITE}/og-image.jpg`;
+  const ogImage = SITE + (meta.ogImage || "/og-image.jpg");
   return `<!doctype html>
 <html lang="en-KE">
 <head>
@@ -103,8 +123,7 @@ ${meta.noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonica
 <meta property="og:description" content="${meta.description}">
 <meta property="og:url" content="${url}">
 <meta property="og:image" content="${ogImage}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+${meta.ogImage ? "" : '<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">'}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${title}">
 <meta name="twitter:description" content="${meta.description}">
@@ -116,6 +135,7 @@ ${meta.noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonica
 ${meta.preload ? `<link rel="preload" as="image" href="${meta.preload}"${meta.preloadSrcset ? ` imagesrcset="${meta.preloadSrcset}" imagesizes="100vw"` : ""} fetchpriority="high">` : ""}
 ${meta.jsonld ? `<script type="application/ld+json">${JSON.stringify(meta.jsonld)}</script>` : ""}
 <script src="/assets/site.js" defer></script>
+<script src="/assets/cart.js" defer></script>
 </head>
 <body>
 ${header(path)}
@@ -127,6 +147,104 @@ ${footer()}
 </html>
 `;
 };
+
+const productCard = (p) => `
+      <article class="card card-media product" data-cat="${p.cat}" id="${p.slug}">
+        <a class="product-media" href="/store/${p.slug}" tabindex="-1" aria-hidden="true">
+          <img src="/assets/img/${p.img}.webp" alt="" width="600" height="600" loading="lazy">
+          <span class="hook-chip">${esc(p.hook)}</span>
+        </a>
+        <div class="card-body">
+          <span class="cat">${p.catLabel}</span>
+          <h3><a href="/store/${p.slug}">${esc(p.name)}</a></h3>
+          <p class="muted">${esc(p.short)}</p>
+          <div class="price">${money(p)} <small>USD</small></div>
+          <div class="actions">
+            ${p.option || p.personalise
+              ? `<a class="btn btn-clay" href="/store/${p.slug}">Choose ${p.option ? p.option.label.split(" ")[0].toLowerCase() : "options"}</a>`
+              : `<button class="btn btn-clay" type="button" data-add="${p.slug}">Add to cart</button>`}
+            <a class="btn btn-outline" href="/store/${p.slug}">Read its story</a>
+          </div>
+        </div>
+      </article>`;
+
+const productPage = (p) => {
+  const others = PRODUCTS.filter((o) => o.slug !== p.slug).slice(0, 3);
+  return `
+<nav class="crumbs wrap" aria-label="Breadcrumb"><a href="/store">Store</a> <span aria-hidden="true">/</span> <span aria-current="page">${esc(p.name)}</span></nav>
+<section class="section product-hero">
+  <div class="wrap split">
+    <figure class="media">
+      <img class="photo square" src="/assets/img/${p.img}.webp" alt="${esc(p.alt)}" width="600" height="600" fetchpriority="high">
+      <figcaption class="hook-cap">${esc(p.hook)}</figcaption>
+    </figure>
+    <div>
+      <span class="eyebrow">${p.catLabel} &middot; Handcrafted in Kenya</span>
+      <h1>${esc(p.name)}</h1>
+      <div class="price big">${money(p)} <small>USD</small> <span class="kes">about KES ${(p.price * 130).toLocaleString("en-KE")}</span></div>
+      <p class="lead">${esc(p.short)}</p>
+      <form class="buy" data-buy="${p.slug}">
+        ${p.option ? `<div class="field"><label for="opt">${p.option.label}</label><select id="opt" name="option" required><option value="" disabled selected>Select</option>${p.option.values.map((v) => `<option>${v}</option>`).join("")}</select></div>` : ""}
+        ${p.personalise ? `<div class="field"><label for="pers">${p.personalise}</label><input id="pers" name="personalise" maxlength="30" required></div>` : ""}
+        <div class="field qty-field"><label for="qty">Quantity</label><input id="qty" name="qty" type="number" min="1" max="20" value="1" inputmode="numeric"></div>
+        <button class="btn btn-clay btn-block" type="submit">Add to cart</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+      <ul class="trust">
+        <li>Ships worldwide, shipping quoted after you order</li>
+        <li>Pay by M-Pesa Paybill or bank transfer</li>
+        <li>Proceeds fund Mizani youth programs</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="section section-sand">
+  <div class="wrap split">
+    <div class="prose">
+      <span class="eyebrow">The story behind it</span>
+      <h2>Every piece carries a story.</h2>
+      ${p.story.map((s) => `<p>${esc(s)}</p>`).join("\n      ")}
+    </div>
+    <div class="card">
+      <h3>Details</h3>
+      <ul class="details">${p.details.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>
+      <p class="muted small">Handmade items vary slightly in colour and pattern. That is part of their character.</p>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <h2>You may also like</h2>
+    <div class="grid grid-3">${others.map(productCard).join("")}</div>
+  </div>
+</section>`;
+};
+
+const storeLd = () => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Mizani Store",
+  itemListElement: PRODUCTS.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: `${SITE}/store/${p.slug}` })),
+});
+
+const productLd = (p) => ({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: p.name,
+  description: p.short,
+  image: `${SITE}/assets/img/${p.img}.webp`,
+  url: `${SITE}/store/${p.slug}`,
+  ...(p.slug === "beaded-converse" ? {} : { brand: { "@type": "Brand", name: "Mizani Concept" } }),
+  offers: {
+    "@type": "Offer",
+    price: String(p.price),
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    itemCondition: "https://schema.org/NewCondition",
+    url: `${SITE}/store/${p.slug}`,
+    seller: { "@id": `${SITE}/#org` },
+  },
+});
 
 const ORG = {
   "@context": "https://schema.org",
@@ -153,15 +271,30 @@ cpSync("src/public", OUT, { recursive: true });
 
 const pages = readdirSync("src/pages").filter((f) => f.endsWith(".html"));
 const sitemap = [];
+mkdirSync(join(OUT, "store"), { recursive: true });
+writeFileSync(join(OUT, "assets", "products.json"), JSON.stringify(PRODUCTS.map(({ slug, name, price, priceFrom, img }) => ({ slug, name, price, priceFrom: !!priceFrom, img }))));
+for (const p of PRODUCTS) {
+  const path = `/store/${p.slug}`;
+  const meta = {
+    title: `${p.name} | Mizani Store`,
+    description: `${p.short} Handcrafted in Kenya; proceeds fund youth programs.`.slice(0, 158),
+    jsonld: productLd(p),
+    ogImage: `/assets/img/${p.img}.webp`,
+  };
+  writeFileSync(join(OUT, "store", `${p.slug}.html`), layout(meta, productPage(p), path));
+  sitemap.push(SITE + path);
+}
 for (const file of pages) {
   const raw = readFileSync(join("src/pages", file), "utf8");
   const m = raw.match(/^<!--meta\s*([\s\S]*?)-->\s*/);
   if (!m) throw new Error(`${file}: missing <!--meta {...} --> header`);
   const meta = JSON.parse(m[1]);
   if (meta.jsonld === "org") meta.jsonld = ORG;
+  if (meta.jsonld === "store") meta.jsonld = storeLd();
   const name = file.replace(/\.html$/, "");
   const path = name === "index" ? "/" : name === "404" ? "/404" : `/${name}`;
-  writeFileSync(join(OUT, file), layout(meta, raw.slice(m[0].length), path));
+  const body = raw.slice(m[0].length).replace("<!-- products -->", PRODUCTS.map(productCard).join(""));
+  writeFileSync(join(OUT, file), layout(meta, body, path));
   if (!meta.noindex) sitemap.push(SITE + (path === "/" ? "/" : path));
 }
 

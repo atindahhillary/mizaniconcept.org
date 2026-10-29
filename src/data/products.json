@@ -1,0 +1,161 @@
+[
+  {
+    "slug": "beaded-converse",
+    "name": "Beaded Converse Sneakers",
+    "cat": "footwear",
+    "catLabel": "Footwear",
+    "price": 120,
+    "img": "store-beaded-converse",
+    "alt": "Converse sneakers with hand-applied Maasai bead panels",
+    "hook": "Street-ready. Culture-rooted. No two pairs alike.",
+    "short": "Classic Converse canvas with hand-applied Maasai bead panels. Sizes 36 to 46.",
+    "story": [
+      "These start as a pair of classic canvas sneakers and leave as something no factory could make. Kenyan artisans stitch Maasai bead panels onto the canvas by hand, one bead at a time, so the pattern on your pair exists nowhere else.",
+      "In Maasai tradition, bead colours carry meaning: red for bravery and unity, blue for the sky that brings rain, green for the land and health, white for peace. Wearing them on your feet is a quiet way of carrying that heritage into a city street, a campus or a stage.",
+      "Every pair sold helps fund mentorship, wellness sessions and materials for young people in Mizani programs. That is culture and commerce working together, two of the 4Cs we teach."
+    ],
+    "details": ["Hand-applied Maasai beadwork on canvas sneakers", "Sizes 36 to 46 (EU)", "Each pair unique; colours vary", "Spot clean beadwork with a damp cloth"],
+    "option": { "label": "Size (EU)", "values": ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"] }
+  },
+  {
+    "slug": "beaded-sandals",
+    "name": "Beaded Leather Sandals",
+    "cat": "footwear",
+    "catLabel": "Footwear",
+    "price": 85,
+    "img": "store-beaded-sandals",
+    "alt": "Leather sandals with colourful beaded straps",
+    "hook": "Made for warm days and long walks home.",
+    "short": "Hand-stitched genuine leather with Maasai bead strap detailing. Sizes 36 to 46.",
+    "story": [
+      "Leather sandals have walked Kenya's red-earth paths for generations. This pair keeps that practical design and adds beaded straps worked by hand in earthy tones with bright pops of colour.",
+      "Because each strap is beaded individually, no two pairs come out quite the same. Small variations are the mark of a person, not a machine.",
+      "Your purchase helps keep a young person in a Mizani program: mentorship, wellness and the confidence to build a livelihood of their own."
+    ],
+    "details": ["Genuine leather sole and straps", "Hand-beaded strap detailing", "Sizes 36 to 46 (EU)", "Each pair one of a kind"],
+    "option": { "label": "Size (EU)", "values": ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"] }
+  },
+  {
+    "slug": "beaded-hat",
+    "name": "Beaded Wide-Brim Hat",
+    "cat": "accessories",
+    "catLabel": "Accessories",
+    "price": 150,
+    "img": "store-beaded-hat",
+    "alt": "Wide-brim hat with a band of Maasai beadwork",
+    "hook": "Shade from the sun. A story in every band.",
+    "short": "Hand-beaded in Kenya using Maasai patterns. Wide brim, adjustable fit.",
+    "story": [
+      "Under the equatorial sun, a good hat is not an accessory, it is a necessity. This wide-brim hat pairs that practicality with a hand-beaded band in traditional Maasai patterns.",
+      "Beadwork has long been a language in Maasai culture, used to mark age, belonging and celebration. The patterns on this band draw on that visual language, so the hat carries its own story wherever you wear it.",
+      "Proceeds from every hat help fund camps where young people learn who they are and where they come from."
+    ],
+    "details": ["Wide brim with adjustable inner fit", "Hand-beaded Maasai pattern band", "Colours vary from piece to piece"]
+  },
+  {
+    "slug": "beaded-dog-collar",
+    "name": "Maasai Beaded Dog Collar",
+    "cat": "accessories",
+    "catLabel": "Accessories",
+    "price": 80,
+    "img": "store-dog-collar",
+    "alt": "Leather dog collar covered in bright Maasai beads",
+    "hook": "Your best friend deserves heritage too.",
+    "short": "Fully hand-beaded leather collar with adjustable buckle and solid D-ring. S, M, L.",
+    "story": [
+      "Every bead on this collar is placed by hand onto a strong leather base, the same technique Kenyan artisans use for jewellery and ceremonial pieces.",
+      "It is built for daily walks: an adjustable buckle and a solid D-ring for the lead. It is also a conversation starter, and a way to carry a little of Kenya with you around the neighbourhood.",
+      "The price of one collar is close to what five boxes of sanitary pads cost, support that helps keep girls in school and in our camps."
+    ],
+    "details": ["Fully hand-beaded leather", "Adjustable buckle, solid metal D-ring", "Sizes S, M, L"],
+    "option": { "label": "Size", "values": ["S", "M", "L"] }
+  },
+  {
+    "slug": "african-attire",
+    "name": "Dashiki and African Heritage Wear",
+    "cat": "attire",
+    "catLabel": "Attire",
+    "price": 45,
+    "priceFrom": true,
+    "img": "store-dashiki-attire",
+    "alt": "Bold patterned dashiki shirt",
+    "hook": "Wear the colour. Carry the culture.",
+    "short": "Dashikis, kaftans and Kente-inspired pieces in bold patterns and natural fabrics. Unisex S to XXL.",
+    "story": [
+      "The dashiki is one of Africa's most recognisable garments: loose, comfortable and unapologetically bold. Our heritage wear range includes dashikis, kaftans and Kente-inspired pieces in natural fabrics.",
+      "Culture is the first of Mizani's 4Cs. Knowing where you come from gives you the foundation to go anywhere, and clothing is one of the most visible ways a community celebrates that identity.",
+      "Prices start at $45 and depend on the piece. Tell us what you are looking for at checkout and we will confirm the style and final price before you pay."
+    ],
+    "details": ["Dashikis, kaftans and Kente-inspired designs", "Natural fabrics", "Unisex sizing S to XXL", "From $45; final price confirmed before payment"],
+    "option": { "label": "Size", "values": ["S", "M", "L", "XL", "XXL"] }
+  },
+  {
+    "slug": "fleece-blanket",
+    "name": "African Print Fleece Blanket",
+    "cat": "home",
+    "catLabel": "Home",
+    "price": 75,
+    "img": "store-fleece-blanket",
+    "alt": "Rolled blue and red Maasai shuka fleece blanket",
+    "hook": "The shuka, reimagined for your sofa.",
+    "short": "Maasai shuka fleece in bold blue and red, personalised with a name and Kenyan flag embroidery.",
+    "story": [
+      "The shuka, the checked cloth worn across Maasailand, is one of the most iconic sights in Kenya. This blanket brings its bold blue and red pattern indoors in soft, warm fleece.",
+      "Each one is personalised with a name of your choice and Kenyan flag embroidery, then rolled and tied with a ribbon. It makes a gift that is both cosy and full of meaning.",
+      "Your blanket helps fund the curriculum materials that make every Mizani session a structured, high-quality experience."
+    ],
+    "details": ["Soft fleece in shuka pattern", "Personalised name plus Kenyan flag embroidery", "Ships rolled and tied with a ribbon"],
+    "personalise": "Name to embroider"
+  },
+  {
+    "slug": "beaded-wall-art",
+    "name": "Kenyan Beaded Wall Art",
+    "cat": "home",
+    "catLabel": "Art",
+    "price": 250,
+    "img": "store-wall-art",
+    "alt": "Round black and white beaded wall piece with a cowrie shell border",
+    "hook": "Hundreds of hours. Thousands of beads. One wall.",
+    "short": "Hand-beaded black and white wall art with a cowrie shell border. About 50cm diameter.",
+    "story": [
+      "This is the most labour-intensive piece in the store. Thousands of black and white beads are worked by hand into a single circular design, finished with a border of cowrie shells.",
+      "Cowrie shells were once used as currency and are still seen across Africa as symbols of prosperity and protection. Paired with monochrome beadwork, they make a statement piece for a home, office or gallery wall.",
+      "One piece helps fund a full term of programming for a group of young people. A wall that gives back."
+    ],
+    "details": ["Hand-beaded, black and white design", "Cowrie shell border", "About 50cm diameter", "Ready to hang"]
+  },
+  {
+    "slug": "beaded-baseball-cap",
+    "name": "Beaded Baseball Cap",
+    "cat": "accessories",
+    "catLabel": "Accessories",
+    "price": 95,
+    "img": "store-baseball-cap",
+    "alt": "Baseball cap with a hand-beaded band",
+    "hook": "Everyday cap. Not an everyday story.",
+    "short": "Six-panel cap with a hand-beaded band in Maasai colours and an embroidered Mizani patch.",
+    "story": [
+      "A classic six-panel cap gets a hand-beaded band in vibrant Maasai colours and an embroidered Mizani patch on the front.",
+      "It is the piece our community wears most: at camps, at events and on the road. When you wear one, you are wearing the same badge as the mentors, teachers and young people in our programs.",
+      "Every cap helps cover the facilitation, transport and logistics that make our mentorship camps possible."
+    ],
+    "details": ["Six-panel cap with adjustable strap", "Hand-beaded band", "Embroidered Mizani patch"]
+  },
+  {
+    "slug": "friendship-bracelets",
+    "name": "Maasai Friendship Bracelets",
+    "cat": "accessories",
+    "catLabel": "Beadwork",
+    "price": 25,
+    "img": "store-friendship-bracelets",
+    "alt": "Three Maasai beaded friendship bracelets",
+    "hook": "One to keep. Two to give away.",
+    "short": "A set of three hand-beaded bracelets in vibrant Maasai colours. Elastic fit.",
+    "story": [
+      "Community is the second of the 4Cs: no one thrives alone. This set of three hand-beaded bracelets is built around that idea. One is for you, and the other two are for the people who walk with you.",
+      "Each bracelet is strung by hand in vibrant Maasai colours on an elastic band that fits most wrists.",
+      "At $25, a set is equal to more than two student terms of Mizani programming. Small purchase, real reach."
+    ],
+    "details": ["Set of 3 hand-beaded bracelets", "Elastic fit, suits most wrists", "Colours vary"]
+  }
+]
