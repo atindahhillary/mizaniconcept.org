@@ -46,3 +46,6 @@ The form posts to [FormSubmit](https://formsubmit.co) and delivers to `info@miza
 7. Confirm permissions for the Thrive Scale (Miracle Foundation) and the 4Cs framework credit (Barbara Joubert).
 8. The teacher classroom photo (`educators.webp`) looks AI-generated. Replace it with a real training photo when available.
 9. Add analytics (Vercel Web Analytics or Plausible) once the domain is live.
+10. Newsletter signups from the footer arrive at info@ as emails titled "Newsletter signup". Move them into a mailing tool (Mailchimp, Brevo) when the list grows.
+11. The Period Party talk video has no captions. Add a caption file (WebVTT) or a short transcript for deaf and hard-of-hearing visitors, and send the facilitator name for the caption.
+12. The impact calculator uses $10 per student per term and $15 per box of sanitary pads, at about KES 130 to the dollar. Update `src/assets/site.js` if these change.

@@ -110,3 +110,51 @@ if (heroVideo && matchMedia("(prefers-reduced-motion: reduce)").matches) {
   heroVideo.removeAttribute("autoplay");
   heroVideo.pause();
 }
+
+// Impact calculator on the Give page
+const calc = document.querySelector("[data-calc]");
+if (calc) {
+  const input = calc.querySelector("#gift");
+  const chips = calc.querySelectorAll(".chips button");
+  const out = (sel) => document.querySelector(sel);
+  const update = () => {
+    const usd = Math.max(0, Math.round(Number(input.value) || 0));
+    const students = Math.floor(usd / 10);
+    out("[data-calc-students]").textContent = students.toLocaleString("en-US");
+    out("[data-calc-label]").textContent = students === 1 ? "student funded for a full term" : "students funded for a full term";
+    out("[data-calc-pads]").textContent = Math.floor(usd / 15).toLocaleString("en-US");
+    out("[data-calc-kes]").textContent = "KES " + (usd * 130).toLocaleString("en-KE");
+    const giveBtn = out("[data-calc-give]");
+    giveBtn.dataset.give = `$${usd} (about KES ${(usd * 130).toLocaleString("en-KE")})`;
+    giveBtn.textContent = usd ? `Give $${usd} by M-Pesa` : "Give by M-Pesa";
+    chips.forEach((c) => c.setAttribute("aria-pressed", String(Number(c.dataset.amount) === usd)));
+  };
+  input.addEventListener("input", update);
+  chips.forEach((c) => c.addEventListener("click", () => { input.value = c.dataset.amount; update(); }));
+  update();
+}
+
+// Small forms (newsletter signup) that post straight to the Mizani inbox
+document.querySelectorAll("[data-quick-form]").forEach((f) =>
+  f.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (f._honey?.value) return;
+    const status = f.querySelector(".form-status");
+    const btn = f.querySelector("button[type=submit]");
+    btn.disabled = true;
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ ...Object.fromEntries(new FormData(f)), _subject: f.dataset.subject, _captcha: "false" }),
+      });
+      if (!res.ok) throw new Error("send failed");
+      f.reset();
+      status.textContent = f.dataset.done;
+    } catch {
+      status.textContent = "Sorry, that did not go through. Please email info@mizaniconcept.org.";
+    } finally {
+      btn.disabled = false;
+    }
+  })
+);

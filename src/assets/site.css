@@ -1,3 +1,6 @@
+/* Metric-matched fallback so text does not jump when Inter loads */
+@font-face { font-family: "Inter Fallback"; src: local("Arial"); ascent-override: 90.49%; descent-override: 22.56%; line-gap-override: 0%; size-adjust: 107.06%; }
+
 :root {
   --earth: #1f3a2e;
   --earth-2: #2b4a3b;
@@ -14,7 +17,7 @@
   --radius: 14px;
   --shadow: 0 1px 2px rgba(0,0,0,.05), 0 8px 24px -12px rgba(31,58,46,.25);
   --wrap: 1180px;
-  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -76,7 +79,7 @@ p { margin: 0 0 1em; }
 .header-inner { display: flex; align-items: center; gap: 24px; min-height: 72px; }
 .brand { display: flex; align-items: center; gap: 10px; color: var(--ivory); text-decoration: none; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; line-height: 1; }
 .brand img { background: #fff; border-radius: 10px; padding: 3px; }
-.brand small { display: block; font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--sun); margin-top: 3px; }
+.brand small { display: block; font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--sun); margin-top: 3px; }
 .brand:hover { color: #fff; }
 .nav { margin-left: auto; }
 .menu-btn + .nav { margin-left: auto; }
@@ -210,7 +213,7 @@ dialog::backdrop { background: rgba(15, 28, 22, .65); }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 @media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
 .check { display: flex; gap: 12px; align-items: flex-start; font-size: .95rem; margin-bottom: 18px; }
-.check input { width: 22px; height: 22px; margin-top: 2px; flex-shrink: 0; accent-color: var(--earth); }
+.check input { width: 24px; height: 24px; margin-top: 2px; flex-shrink: 0; accent-color: var(--earth); }
 .hp { position: absolute; left: -9999px; }
 .form-status { margin-top: 16px; padding: 14px 16px; border-radius: 10px; font-weight: 600; }
 .form-status.ok { background: #e3f1e6; color: #1d5b2c; }
@@ -308,7 +311,7 @@ dialog::backdrop { background: rgba(15, 28, 22, .65); }
 
 /* Product page */
 .crumbs { padding-top: 20px; font-size: .92rem; color: var(--ink-2); }
-.crumbs a { color: var(--clay-dark); }
+.crumbs a { color: var(--clay-dark); display: inline-block; padding: 8px 2px; }
 .product-hero { padding-top: 28px; }
 .photo.square { aspect-ratio: 1; }
 .price.big { font-size: 2rem; font-weight: 800; color: var(--earth); letter-spacing: -0.03em; margin: 4px 0 14px; }
@@ -347,9 +350,57 @@ dialog::backdrop { background: rgba(15, 28, 22, .65); }
 .bank-dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 0 0 8px; padding: 18px 20px; background: var(--sand); border-radius: 12px; }
 .bank-dl dt { color: var(--ink-2); }
 .bank-dl dd { margin: 0; font-weight: 600; }
-.reel-single { margin-inline: auto; width: 100%; }
+.reel-single { margin-inline: auto; width: 100%; max-width: 320px; }
 .pull.hero-photo .hero-bg { opacity: .22; mix-blend-mode: multiply; }
 @media (max-width: 520px) { .bank-dl { grid-template-columns: 1fr; } .bank-dl dd { margin-bottom: 6px; } }
 .hook-line { display: inline-block; margin: -4px 0 18px; padding: 6px 14px; border-radius: 999px; background: rgba(233,185,73,.16); border: 1px solid rgba(233,185,73,.5); color: var(--sun); font-weight: 700; font-size: .95rem; }
 .reels-one { grid-template-columns: minmax(0, 360px); }
 .hook-light { color: var(--clay-dark); background: rgba(184,86,44,.08); border-color: rgba(184,86,44,.35); }
+
+/* Scroll reveal: pure CSS scroll-driven animation. Browsers without support,
+   and anyone who prefers reduced motion, simply see the content. */
+@keyframes rise-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    main .section-head, main .grid > .card, main .split > *, main .reels, main .steps, main .faq, main .sdg-grid {
+      animation: rise-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}
+.card-media img { transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.card-media:hover img { transform: scale(1.03); }
+.card-media .product-media, .card-media { overflow: hidden; }
+
+/* Impact calculator */
+.calc-input { display: flex; align-items: center; gap: 10px; margin: 18px 0 14px; }
+.calc-input span { font-size: 2rem; font-weight: 800; color: var(--sun); }
+.calc-input input { width: 160px; min-height: 60px; font: inherit; font-size: 2rem; font-weight: 800; padding: 6px 14px; border-radius: 12px; border: 2px solid rgba(248,244,238,.5); background: rgba(248,244,238,.08); color: #fff; }
+.calc-input input:focus { outline: none; border-color: var(--sun); box-shadow: 0 0 0 3px rgba(233,185,73,.45); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips button { min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid rgba(248,244,238,.5); background: transparent; color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+.chips button[aria-pressed="true"], .chips button:hover { background: var(--sun); border-color: var(--sun); color: var(--ink); }
+.calc-out { text-align: left; }
+.calc-out .stat { color: var(--sun); }
+.calc-out .stat-label { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 14px; }
+.calc-out ul { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 8px; color: rgba(248,244,238,.88); }
+.calc-out li strong { color: #fff; }
+
+/* FAQ */
+.faq { display: grid; gap: 12px; max-width: 820px; }
+.faq details { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 0 20px; }
+.faq summary { cursor: pointer; list-style: none; padding: 18px 32px 18px 0; font-weight: 700; color: var(--earth); position: relative; min-height: 44px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 0; top: 14px; font-size: 1.5rem; font-weight: 600; color: var(--clay); transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { margin: 0 0 18px; color: var(--ink-2); }
+
+/* Footer signup */
+.signup { display: grid; grid-template-columns: 1fr 1.1fr; gap: 24px; align-items: center; padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid rgba(248,244,238,.1); }
+.signup p { margin: 0; color: rgba(248,244,238,.75); max-width: 46ch; }
+.signup-form { display: flex; flex-wrap: wrap; gap: 10px; }
+.signup-form input[type=email] { flex: 1 1 220px; min-height: 48px; padding: 0 16px; border-radius: 999px; border: 1.5px solid rgba(248,244,238,.4); background: rgba(248,244,238,.06); color: #fff; font: inherit; }
+.signup-form input::placeholder { color: rgba(248,244,238,.6); }
+.signup-form .form-status { flex-basis: 100%; margin: 0; }
+@media (max-width: 760px) { .signup { grid-template-columns: 1fr; } }

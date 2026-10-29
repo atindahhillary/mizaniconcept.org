@@ -53,6 +53,19 @@ const header = (path) => `
 
 const footer = () => `
 <footer class="site-footer">
+  <div class="wrap signup">
+    <div>
+      <h2 class="footer-h">Stories from the field</h2>
+      <p>A short email when there is news worth sharing: camps, Period Parties, new store pieces. No spam.</p>
+    </div>
+    <form class="signup-form" data-quick-form data-subject="Newsletter signup" data-done="Thank you. You are on the list.">
+      <label class="sr-only" for="signup-email">Email address</label>
+      <input id="signup-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn btn-sun" type="submit">Subscribe</button>
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
   <div class="wrap footer-grid">
     <div>
       <a class="brand brand-footer" href="/" aria-label="Mizani Concept home"><img src="/assets/img/logo.webp" alt="" width="44" height="44"><span>Mizani<small>Concept</small></span></a>
@@ -121,13 +134,14 @@ ${meta.noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonica
 <meta name="theme-color" content="#1f3a2e">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:type" content="website">
+<meta property="og:type" content="${meta.ogType || "website"}">
 <meta property="og:site_name" content="Mizani Concept">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${meta.description}">
 <meta property="og:url" content="${url}">
 <meta property="og:image" content="${ogImage}">
-${meta.ogImage ? "" : '<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">'}
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${title}">
 <meta name="twitter:description" content="${meta.description}">
@@ -283,7 +297,8 @@ for (const p of PRODUCTS) {
     title: `${p.name} | Mizani Store`,
     description: `${p.short} Handcrafted in Kenya; proceeds fund youth programs.`.slice(0, 158),
     jsonld: productLd(p),
-    ogImage: `/assets/img/${p.img}.webp`,
+    ogImage: `/og/${p.slug}.jpg`,
+    ogType: "product",
   };
   writeFileSync(join(OUT, "store", `${p.slug}.html`), layout(meta, productPage(p), path));
   sitemap.push(SITE + path);
