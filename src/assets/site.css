@@ -404,3 +404,20 @@ dialog::backdrop { background: rgba(15, 28, 22, .65); }
 .signup-form input::placeholder { color: rgba(248,244,238,.6); }
 .signup-form .form-status { flex-basis: 100%; margin: 0; }
 @media (max-width: 760px) { .signup { grid-template-columns: 1fr; } }
+
+/* SDG goal cards with icons in official SDG colours */
+.sdg-icons li { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; border-top: 4px solid var(--sdg); padding: 18px 16px 18px; }
+.sdg-icon { width: 60px; height: 60px; border-radius: 12px; background: var(--sdg); color: #fff; display: grid; place-items: center; margin-bottom: 8px; transition: transform .25s cubic-bezier(.2,.7,.2,1); }
+.sdg-icons li:hover .sdg-icon { transform: scale(1.06) rotate(-2deg); }
+.sdg-num { font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
+.sdg-name { font-weight: 700; color: var(--earth); line-height: 1.3; }
+.sdg-1 { --sdg: #E5243B; }
+.sdg-3 { --sdg: #4C9F38; }
+.sdg-4 { --sdg: #C5192D; }
+.sdg-5 { --sdg: #FF3A21; }
+.sdg-6 { --sdg: #26BDE2; }
+.sdg-8 { --sdg: #A21942; }
+.sdg-10 { --sdg: #DD1367; }
+.sdg-11 { --sdg: #FD9D24; }
+.sdg-13 { --sdg: #3F7E44; }
+.sdg-16 { --sdg: #00689D; }
