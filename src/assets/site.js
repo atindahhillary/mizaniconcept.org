@@ -103,3 +103,10 @@ if (form) {
     }
   });
 }
+
+// Hero background video: respect reduced-motion preferences
+const heroVideo = document.querySelector("[data-hero-video]");
+if (heroVideo && matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  heroVideo.removeAttribute("autoplay");
+  heroVideo.pause();
+}
