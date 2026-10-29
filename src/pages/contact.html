@@ -1,0 +1,51 @@
+<!--meta
+{
+  "title": "Contact Mizani Concept | Register for a Camp, Book a School Session or Partner",
+  "description": "Register a young person for a Mizani mentorship camp, bring wellness sessions to your school, apply for teacher training, or talk to us about giving and partnerships in Kenya."
+}
+-->
+<section class="section section-dark">
+  <div class="wrap split">
+    <div>
+      <span class="eyebrow">Take the first step</span>
+      <h1>Register, or start a conversation.</h1>
+      <p class="lead">Whether you are a young person ready for camp, a parent, an educator wanting training, or a donor who wants to see the work first-hand, start here. We reply within 3 working days.</p>
+      <ul class="contact-list">
+        <li><a href="https://wa.me/254724116694" rel="noopener"><span>WhatsApp<small>+254 724 116694, usually the fastest</small></span></a></li>
+        <li><a href="tel:+254724116694"><span>Call<small>+254 724 116694</small></span></a></li>
+        <li><a href="mailto:info@mizaniconcept.org"><span>Email<small>info@mizaniconcept.org</small></span></a></li>
+      </ul>
+    </div>
+
+    <form class="form" id="contact-form">
+      <div class="field-row">
+        <div class="field"><label for="fn">First name</label><input id="fn" name="first_name" autocomplete="given-name" required></div>
+        <div class="field"><label for="ln">Last name</label><input id="ln" name="last_name" autocomplete="family-name" required></div>
+      </div>
+      <div class="field"><label for="em">Email address</label><input id="em" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+      <div class="field"><label for="ph">Phone or WhatsApp <span class="hint">(optional)</span></label><input id="ph" name="phone" type="tel" autocomplete="tel" placeholder="+254 7XX XXX XXX"></div>
+      <div class="field">
+        <label for="role">I am reaching out as</label>
+        <select id="role" name="role_key" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="youth">A young person, or a parent registering a child</option>
+          <option value="school">A school wanting wellness sessions</option>
+          <option value="educator">A teacher or counsellor applying for training</option>
+          <option value="donor">A donor wanting to fund materials or camps</option>
+          <option value="visit">A donor wanting to visit the field or a camp</option>
+          <option value="partner">A program partner (tools, teaching aids, resources)</option>
+          <option value="ngo">An NGO or institutional partner</option>
+          <option value="store">A store, custom or wholesale order</option>
+          <option value="other">Something else</option>
+        </select>
+      </div>
+      <p class="muted" id="minor-note" hidden>If the young person is under 18, a parent or guardian should fill in this form and give their own contact details.</p>
+      <div class="field"><label for="loc">Location or county <span class="hint">(optional)</span></label><input id="loc" name="location" placeholder="e.g. Narok, Nairobi, or your country"></div>
+      <div class="field"><label for="msg">Tell us about yourself or your interest</label><textarea id="msg" name="message" required></textarea></div>
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="check"><input type="checkbox" name="consent" value="yes" required><span>I agree that Mizani may use these details to reply to me, as described in the <a href="/privacy">privacy notice</a>. If I am registering a child, I am their parent or guardian.</span></label>
+      <button class="btn btn-clay btn-block" type="submit">Send my message</button>
+      <div class="form-status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
